@@ -1,22 +1,24 @@
-import mongoose, { Mongoose } from 'mongoose';
+import mongoose from "mongoose";
+
+const MONGODB_URI = process.env.MONGODB_URI;
 
 
-const MONGO_URI = process.env.MONGODB_URI as string;
-
-interface MongooseCache {
-    conn: Mongoose | null;
-    promise: Promise<Mongoose> | null;
-}
-const globalWithMongoose = global as typeof globalThis &{mongoose?: MongooseCache}
-const cached: MongooseCache = globalWithMongoose.mongoose || { conn: null, promise: null };
-
-export async function connectDB() {
-    if (cached.conn) return cached.conn; // Use existing connection
-
-    if (!cached.promise) {
-        cached.promise = mongoose.connect(MONGO_URI,{}).then((mongoose) => mongoose);
+const connectDB = async () => {
+  try {
+    if (mongoose.connection.readyState === 1) {
+      console.log("MongoDB already connected.");
+      return;
     }
 
-    cached.conn = await cached.promise;
-    return cached.conn;
-}
+    await mongoose.connect(MONGODB_URI, {
+      dbName: "taskmanagement", 
+    });
+
+    console.log("MongoDB connected to Atlas successfully!");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
+  }
+};
+
+export default connectDB;

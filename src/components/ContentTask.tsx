@@ -25,7 +25,7 @@ const ContentTask: React.FC<TaskDataProps> = ({id, name, description, deadline, 
 
   const handleCompleted = async (id:string) =>{
     try{
-      const response = await fetch("http://localhost:3000/api/tasks",
+      const response = await fetch("/api/tasks",
         {method:"PUT",
           headers:{
             "Content-Type":"application/json"
@@ -48,7 +48,7 @@ const ContentTask: React.FC<TaskDataProps> = ({id, name, description, deadline, 
   const handleDelete = async (id:string)=>{
     try{
     const response = await fetch(
-      "http://localhost:3000/api/tasks",
+      "/api/tasks",
         {method:"DELETE",
           headers:{
             "Content-Type":"application/json"

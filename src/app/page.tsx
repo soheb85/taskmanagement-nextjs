@@ -33,7 +33,7 @@ export default function Home() {
     useEffect(() => {
       const fetchTasks = async () => {
         try {
-          const response = await fetch("http://localhost:3000/api/tasks");
+          const response = await fetch("/api/tasks");
           const data = await response.json();
   
           console.log("Fetched Tasks:", data); // Debugging: Check if data is correct

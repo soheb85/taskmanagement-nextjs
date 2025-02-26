@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { connectDB } from "@/lib/moongose";
+import connectDB from '@/lib/moongose'
 import Tasks from "@/models/TaskSchema";
 
 
