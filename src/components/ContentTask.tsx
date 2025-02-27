@@ -87,8 +87,8 @@ const ContentTask: React.FC<TaskDataProps> = ({id, name, description, deadline, 
               <PopoverContent className="w-36">
                 <div className="grid gap-4">
                   <div className="space-y-2">
-                    <Button variant={'outline'} onClick={()=>handleCompleted(id)}>Complete</Button> 
-                    <Button variant={'outline'} onClick={()=>handleDelete(id)}>Delete</Button>
+                    <Button className="active:scale-95 transition-transform duration-150" variant={'outline'} onClick={()=>handleCompleted(id)}>Complete</Button> 
+                    <Button className="active:scale-95 transition-transform duration-150" variant={'outline'} onClick={()=>handleDelete(id)}>Delete</Button>
                
                   </div>
                 </div>
